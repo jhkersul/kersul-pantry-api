@@ -1,0 +1,9 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+    image: jhkersul/kersul-pantry-api
+    hostname: kersul-pantry-api
+    ports:
+      - "8080:3000"
