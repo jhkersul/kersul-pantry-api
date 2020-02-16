@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "babel-node -- ./bin/www",
-    "dev": "nodemon --exec npm run babel-node -- ./bin/www",
+    "start": "./bin/start.sh",
+    "prod": "NODE_ENV=production babel-node -- ./bin/www",
+    "dev": "NODE_ENV=development nodemon --exec npm run babel-node -- ./bin/www",
     "babel-node": "babel-node",
     "test": "jest",
     "lint": "eslint ."
