@@ -3,6 +3,8 @@
 
 This is the backend for Kersul Pantry`s app.
 
+## :warning: **IN DEVELOPMENT - NOT WORKING YET**
+
 ## Starting/Developing with Docker
 
 ### Building
@@ -36,5 +38,3 @@ Or run tests in `watch` mode:
 ```bash
 $ docker-compose run web yarn test --watch
 ```
-
-## :warning: **IN DEVELOPMENT**
