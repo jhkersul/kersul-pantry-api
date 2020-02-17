@@ -9,3 +9,4 @@ services:
       - "8080:3000"
     environment:
       - NODE_ENV=development
+      - COSMOS_ACCESS_TOKEN=fake-access-token

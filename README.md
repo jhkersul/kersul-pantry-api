@@ -1,9 +1,20 @@
 # Kersul Pantry - API
 [![CircleCI](https://circleci.com/gh/jhkersul/kersul-pantry-api.svg?style=svg)](https://circleci.com/gh/jhkersul/kersul-pantry-api)
 
-This is the backend for Kersul Pantry`s app.
+This is the backend for Kersul Pantry`s app. A pantry manager focused on Brazilian users. :)
 
-## :warning: **IN DEVELOPMENT - NOT WORKING YET**
+## :warning: **Development Status**
+
+- [ ] Integration with [Bluesoft Cosmos API](https://cosmos.bluesoft.com.br/api)
+- [ ] CRUD Product
+- [ ] CRUD User
+- [ ] CRUD Products List
+
+## Requirements
+
+### Bluesoft Cosmos API
+
+You need a API Key from [Bluesoft Cosmos API](https://cosmos.bluesoft.com.br/api)
 
 ## Starting/Developing with Docker
 

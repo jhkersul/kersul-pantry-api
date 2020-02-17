@@ -1,0 +1,56 @@
+{
+  "description": "TRIDENT MENTA",
+  "gtin": 7622300847791,
+  "thumbnail": "https://cdn-cosmos.bluesoft.com.br/products/trident-menta_300x300-PU76a48_1.jpg",
+  "width": 1.0,
+  "height": 1.0,
+  "length": 1.0,
+  "net_weight": null,
+  "gross_weight": null,
+  "created_at": "2015-01-14T22:00:00.000-02:00",
+  "updated_at": "2020-01-06T09:06:23.000-02:00",
+  "price": "R$ 4,15",
+  "avg_price": 4.15,
+  "max_price": 4.15,
+  "min_price": 4.15,
+  "gtins": [
+    {
+      "gtin": 7622300847791,
+      "commercial_unit": {
+        "type_packaging": "Unidade",
+        "quantity_packaging": 1,
+        "ballast": null,
+        "layer": null
+      }
+    },
+    {
+      "gtin": 7622300847807,
+      "commercial_unit": {
+        "type_packaging": "Unidade",
+        "quantity_packaging": 1,
+        "ballast": 0,
+        "layer": 0
+      }
+    },
+    {
+      "gtin": 17622300847828,
+      "commercial_unit": {
+        "type_packaging": "Unidade",
+        "quantity_packaging": 1,
+        "ballast": 0,
+        "layer": 0
+      }
+    }
+  ],
+  "origin": "COSMOS",
+  "barcode_image": "https://api.cosmos.bluesoft.com.br/products/barcode/F81C5F8686DD0FEA99135EE8A58A3FCA.png",
+  "brand": {
+    "name": "TRIDENT",
+    "picture": "https://cdn-cosmos.bluesoft.com.br/brands/brand_trident"
+  },
+  "ncm": {
+    "code": "21069050",
+    "description": "Gomas de mascar, sem açúcar",
+    "full_description": "Preparações alimentícias diversas - Preparações alimentícias não especificadas nem compreendidas em outras posições - Outras - Gomas de mascar, sem açúcar"
+  }
+}
