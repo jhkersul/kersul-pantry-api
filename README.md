@@ -16,6 +16,12 @@ This is the backend for Kersul Pantry`s app. A pantry manager focused on Brazili
 
 You need a API Key from [Bluesoft Cosmos API](https://cosmos.bluesoft.com.br/api)
 
+Set `COSMOS_ACCESS_TOKEN` environment variable:
+
+```bash
+COSMOS_ACCESS_TOKEN=<your-access-token>
+```
+
 ## Starting/Developing with Docker
 
 ### Building
