@@ -4,6 +4,9 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index';
+import { connectToMongo } from './infra/mongoose/MongooseConnect';
+
+connectToMongo();
 
 const app = express();
 
