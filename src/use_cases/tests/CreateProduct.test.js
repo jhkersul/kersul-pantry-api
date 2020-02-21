@@ -19,7 +19,7 @@ describe('Use Case: Create Product', () => {
       const params = {
         name: 'TRIDENT MENTA',
         description: 'Gomas de mascar, sem açúcar',
-        barCode: 7622300847791,
+        barCode: '7622300847791',
         width: 1.0,
         height: 1.0,
         length: 1.0,
@@ -32,6 +32,16 @@ describe('Use Case: Create Product', () => {
       const product = await CreateProduct.handle(params);
 
       expect(product.id).toBeTruthy();
+      expect(product.name).toEqual(params.name);
+      expect(product.description).toEqual(params.description);
+      expect(product.barCode).toEqual(params.barCode);
+      expect(product.width).toEqual(params.width);
+      expect(product.height).toEqual(params.height);
+      expect(product.length).toEqual(params.length);
+      expect(product.netWeight).toEqual(params.netWeight);
+      expect(product.grossWeight).toEqual(params.grossWeight);
+      expect(product.price).toEqual(params.price);
+      expect(product.images[0].url).toEqual(params.images[0].url);
     });
   });
 });
