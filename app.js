@@ -3,8 +3,8 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import indexRouter from './routes/index';
-import { connectToMongo } from './infra/mongoose/MongooseConnect';
+import indexRouter from './src/routes/index';
+import { connectToMongo } from './src/infra/mongoose/MongooseConnect';
 
 connectToMongo();
 
