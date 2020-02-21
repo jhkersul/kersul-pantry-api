@@ -1,21 +1,17 @@
-import mongoose from 'mongoose';
 import CreateProduct from '../CreateProduct';
 import Product from '../../domain/Product';
+import { connectToDatabase, disconnectFromDatabase } from '../../tests/TestDatabase';
 
 describe('Use Case: Create Product', () => {
   let db;
 
   beforeAll(async () => {
-    db = await mongoose.connect(global.__MONGO_URI__, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
+    db = await connectToDatabase();
   });
 
   afterAll(async () => {
     await Product.deleteMany({});
-    await db.disconnect();
+    disconnectFromDatabase(db);
   });
 
   describe('When creating with all required params', () => {
