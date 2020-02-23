@@ -16,6 +16,6 @@ export async function getProduct(req, res) {
 
     res.json({ ...productObject });
   } catch (error) {
-    respondError(res, 404, error.message);
+    respondError(res, error);
   }
 }

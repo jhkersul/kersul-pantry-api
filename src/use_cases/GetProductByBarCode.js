@@ -1,5 +1,6 @@
 import Product from '../domain/Product';
 import GetAndCreateExternalProductByBarCode from './GetAndCreateExternalProductByBarCode';
+import NotFoundError from '../exceptions/NotFoundError';
 
 async function getProductOnDatabase(barCode) {
   try {
@@ -15,7 +16,7 @@ async function getExternalProduct(barCode) {
     const externalProduct = await GetAndCreateExternalProductByBarCode.handle(barCode);
     return externalProduct;
   } catch (error) {
-    throw new Error('Product not found on external API');
+    throw new NotFoundError('Product not found on external API');
   }
 }
 
