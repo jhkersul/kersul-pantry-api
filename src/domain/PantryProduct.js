@@ -10,18 +10,24 @@ const pantryProductSchema = new Schema({
     type: Schema.Types.Number,
     required: true,
     default: 1,
+    min: 1,
   },
   expiryDay: {
     type: Schema.Types.Number,
     required: false,
+    min: 1,
+    max: 31,
   },
   expiryMonth: {
     type: Schema.Types.Number,
     required: false,
+    min: 1,
+    max: 12,
   },
   expiryYear: {
     type: Schema.Types.Number,
     required: false,
+    min: 2020,
   },
 });
 
