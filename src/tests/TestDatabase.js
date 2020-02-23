@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import mongoose from 'mongoose';
 
 export async function connectToDatabase() {

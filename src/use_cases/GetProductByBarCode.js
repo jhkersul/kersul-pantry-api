@@ -19,6 +19,11 @@ async function getExternalProduct(barCode) {
   }
 }
 
+/**
+ * Gets product by bar code
+ * @param {String} barCode Bar code to get product from
+ * @returns {Product} Found product
+ */
 async function handle(barCode) {
   const productOnDb = await getProductOnDatabase(barCode);
   if (productOnDb) return productOnDb;
