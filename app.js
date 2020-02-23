@@ -6,6 +6,7 @@ import logger from 'morgan';
 import indexRouter from './src/routes/index';
 import productsRouter from './src/routes/products';
 import { connectToMongo } from './src/infra/mongoose/MongooseConnect';
+import { respondError } from './src/adapters/ErrorResponse';
 
 function isTestEnv() {
   return process.env.NODE_ENV === 'test';
@@ -35,9 +36,8 @@ app.use((err, req, res) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.json({ message: err.message });
+  const errorStatus = err.status || 500;
+  respondError(res, errorStatus, err.message);
 });
 
 module.exports = app;
