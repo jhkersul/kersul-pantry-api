@@ -11,7 +11,7 @@ function isTestEnv() {
   return process.env.NODE_ENV === 'test';
 }
 
-if (!isTestEnv) connectToMongo();
+if (!isTestEnv()) connectToMongo();
 
 const app = express();
 

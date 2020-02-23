@@ -11,7 +11,11 @@ export function connectToMongo() {
 
   console.info(`\nConnecting with MongoDB on ${mongooseUrl}`);
 
-  mongoose.connect(mongooseUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+  mongoose.connect(mongooseUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  });
 
   mongoose.connection.on('error', () => {
     console.error('CONNECTION ERROR WITH MONGO');
