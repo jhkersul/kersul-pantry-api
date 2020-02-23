@@ -11,7 +11,7 @@ describe('Use Case: Create Product', () => {
 
   afterAll(async () => {
     await Product.deleteMany({});
-    disconnectFromDatabase(db);
+    await disconnectFromDatabase(db);
   });
 
   describe('When creating with all required params', () => {
@@ -19,7 +19,7 @@ describe('Use Case: Create Product', () => {
       const params = {
         name: 'TRIDENT MENTA',
         description: 'Gomas de mascar, sem açúcar',
-        barCode: '7622300847791',
+        barCode: '7622300847723',
         width: 1.0,
         height: 1.0,
         length: 1.0,

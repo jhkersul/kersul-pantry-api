@@ -4,9 +4,14 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './src/routes/index';
+import productsRouter from './src/routes/products';
 import { connectToMongo } from './src/infra/mongoose/MongooseConnect';
 
-connectToMongo();
+function isTestEnv() {
+  return process.env.NODE_ENV === 'test';
+}
+
+if (!isTestEnv) connectToMongo();
 
 const app = express();
 
@@ -17,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/products', productsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

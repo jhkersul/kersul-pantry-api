@@ -18,6 +18,7 @@ module.exports = {
     },
     "rules": {
         "import/prefer-default-export": "off",
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "no-underscore-dangle": "off"
     }
 };
