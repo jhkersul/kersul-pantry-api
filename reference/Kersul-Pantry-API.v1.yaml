@@ -1,0 +1,311 @@
+openapi: 3.0.0
+info:
+  title: Kersul Pantry API
+  version: '1.0'
+  description: 'This is the backend for Kersul Pantry`s app. A pantry manager focused on Brazilian users. :)'
+  contact:
+    name: Kersul
+    url: 'https://kersul.dev'
+    email: joaohkfaria@gmail.com
+  license:
+    name: MIT
+servers:
+  - url: 'http://localhost:8080'
+    description: Docker
+paths:
+  '/products/{barCode}':
+    get:
+      summary: Get Product By Bar Code
+      tags:
+        - bar code
+        - product
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                Product Example:
+                  value:
+                    _id: 5e522793d8565388c9a3480b
+                    barCode: '7891000142202'
+                    name: LEITE EM PÓ NINHO INSTANTÂNEO
+                    description: Leite integral
+                    width: 0
+                    height: 0
+                    length: 0
+                    netWeight: 400
+                    grossWeight: 420
+                    price: 13.89
+                    images:
+                      - _id: 5e522793d8565388c9a3480c
+                        url: 'https://cdn-cosmos.bluesoft.com.br/products/7891000142202'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Not Found Product:
+                  value:
+                    error: 404
+                    message: Product not found on external API
+      operationId: getProductByBarCode
+      description: Returns a single product that represents the bar code passed.
+    parameters:
+      - schema:
+          type: string
+        name: barCode
+        in: path
+        required: true
+        description: Bar code that represents the product
+  /pantry-products:
+    post:
+      summary: Create Pantry Product
+      operationId: createPantryProduct
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PantryProduct'
+              examples:
+                Pantry Product Quantity Updated Response:
+                  value:
+                    quantity: 8
+                    _id: 5e5312c8a0b530b9d986e39b
+                    productId: 5e522793d8565388c9a3480b
+                    expiryDay: 1
+                    expiryMonth: 1
+                    expiryYear: 2021
+                    __v: 0
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PantryProduct'
+              examples:
+                Pantry Product Created Response:
+                  value:
+                    _id: 5e5312c8a0b530b9d986e39b
+                    quantity: 8
+                    productId: 5e522793d8565388c9a3480b
+                    expiryDay: 1
+                    expiryMonth: 1
+                    expiryYear: 2021
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Validation Error:
+                  value:
+                    error: 422
+                    message: Validation error
+                    details:
+                      - target: quantity
+                        message: '"quantity" must be larger than or equal to 1'
+      description: Creates a Pantry Product or updates quantity if another equal already exist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PantryProduct'
+            examples:
+              Create Pantry Product Payload:
+                value:
+                  productId: 5e522793d8565388c9a3480b
+                  quantity: 1
+                  expiryDay: 1
+                  expiryMonth: 1
+                  expiryYear: 2021
+        description: Create Pantry Product payload
+      tags:
+        - pantry product
+        - create
+    parameters: []
+  '/pantry-products/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: Update Pantry Product
+      operationId: updatePantryProduct
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PantryProduct'
+              examples:
+                Updated Pantry Product:
+                  value:
+                    quantity: 1
+                    _id: 5e5312c8a0b530b9d986e39b
+                    productId: 5e522793d8565388c9a3480b
+                    expiryDay: 1
+                    expiryMonth: 1
+                    expiryYear: 2021
+      description: Updating a Pantry Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PantryProduct'
+            examples:
+              Updating Pantry Product Quantity:
+                value:
+                  quantity: 1
+              Updating Pantry Product Expiry:
+                value:
+                  expiryDay: 1
+                  expiryMonth: 1
+                  expiryYear: 2021
+      tags:
+        - pantry product
+        - update
+    delete:
+      summary: Delete Pantry Product
+      operationId: deletePantryProduct
+      responses:
+        '204':
+          description: No Content
+      description: Delete a Pantry Product
+      tags:
+        - pantry product
+        - delete
+components:
+  schemas:
+    Product:
+      title: Product
+      type: object
+      x-examples:
+        Leite Ninho:
+          _id: 5e522793d8565388c9a3480b
+          barCode: '7891000142202'
+          name: LEITE EM PÓ NINHO INSTANTÂNEO
+          description: Leite integral
+          width: 0
+          height: 0
+          length: 0
+          netWeight: 400
+          grossWeight: 420
+          price: 13.89
+          images:
+            - _id: 5e522793d8565388c9a3480c
+              url: 'https://cdn-cosmos.bluesoft.com.br/products/7891000142202'
+      description: A product
+      properties:
+        _id:
+          type: string
+        barCode:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        width:
+          type: number
+        height:
+          type: number
+        length:
+          type: number
+        netWeight:
+          type: number
+        grossWeight:
+          type: number
+        price:
+          type: number
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+      required:
+        - _id
+        - barCode
+        - name
+    Image:
+      title: Image
+      type: object
+      properties:
+        _id:
+          type: string
+        url:
+          type: string
+          format: uri
+      required:
+        - _id
+        - url
+    PantryProduct:
+      title: PantryProduct
+      type: object
+      properties:
+        _id:
+          type: string
+        productId:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+        expiryDay:
+          type: integer
+          minimum: 1
+          maximum: 31
+        expiryMonth:
+          type: integer
+          minimum: 1
+          maximum: 12
+        expiryYear:
+          type: integer
+      required:
+        - _id
+        - productId
+        - quantity
+    Error:
+      title: Error
+      type: object
+      properties:
+        error:
+          type: integer
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              target:
+                type: string
+              message:
+                type: string
+      x-examples:
+        Error Example:
+          error: 422
+          message: Validation error
+          details:
+            - target: quantity
+              message: '"quantity" must be larger than or equal to 1'
+tags:
+  - name: product
+    description: A product
+  - name: bar code
+    description: A product bar code
+  - name: pantry product
+    description: A product that is inside a pantry
+  - name: create
+    description: A create operation
+  - name: update
+    description: A update operation
+  - name: delete
+    description: A delete operation
