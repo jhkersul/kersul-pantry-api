@@ -1,33 +1,11 @@
 import request from 'supertest';
-import randomstring from 'randomstring';
 import { connectToDatabase, disconnectFromDatabase } from '../../../tests/TestDatabase';
 import app from '../../../../app';
-import Product from '../../../domain/Product';
-import PantryProduct from '../../../domain/PantryProduct';
+import MockPantryProduct from '../../../mocks/MockPantryProduct';
+import MockProduct from '../../../mocks/MockProduct';
 
 describe('Controller: Pantry Products Controller', () => {
   let db;
-
-  async function createProduct() {
-    const product = new Product({
-      barCode: randomstring.generate(),
-      name: 'Test Product Add Pantry',
-    });
-
-    return product.save();
-  }
-
-  async function createPantryProduct(product) {
-    const pantryProduct = new PantryProduct({
-      productId: product.id,
-      quantity: 1,
-      expiryDay: 1,
-      expiryMonth: 1,
-      expiryYear: 2023,
-    });
-
-    return pantryProduct.save();
-  }
 
   beforeAll(async () => {
     db = await connectToDatabase();
@@ -65,7 +43,7 @@ describe('Controller: Pantry Products Controller', () => {
 
     describe('and the data is valid', () => {
       it('responds with created pantry product', async () => {
-        const savedProduct = await createProduct();
+        const savedProduct = await MockProduct.createProduct();
         const requestBody = {
           productId: savedProduct.id,
           quantity: 2,
@@ -93,8 +71,8 @@ describe('Controller: Pantry Products Controller', () => {
 
       describe('and already exist a pantry product with the same productId and expiry date', () => {
         it('returns a quantity updated pantry product', async () => {
-          const savedProduct = await createProduct();
-          const pantryProduct = await createPantryProduct(savedProduct);
+          const savedProduct = await MockProduct.createProduct();
+          const pantryProduct = await MockPantryProduct.createPantryProduct(savedProduct.id);
 
           const requestBody = {
             productId: savedProduct.id,
