@@ -11,10 +11,8 @@ export async function getProduct(req, res) {
 
   try {
     const product = await GetProductByBarCode.handle(barCode);
-    const productObject = product.toObject();
-    delete (productObject.__v);
 
-    res.json({ ...productObject });
+    res.json({ ...product.toObject() });
   } catch (error) {
     respondError(res, error);
   }
