@@ -8,7 +8,8 @@ This is the backend for Kersul Pantry`s app. A pantry manager focused on Brazili
 - [X] Integration with [Bluesoft Cosmos API](https://cosmos.bluesoft.com.br/api)
 - [X] Create product with bar code
 - [X] Add product to pantry
-- [ ] Remove product on pantry
+- [ ] Update product on pantry 
+- [ ] Remove product on pantry 
 - [ ] User authentication
 - [ ] Add product to Shopping List
 - [ ] Remove product to Shopping List
