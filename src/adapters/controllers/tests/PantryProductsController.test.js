@@ -43,7 +43,7 @@ describe('Controller: Pantry Products Controller', () => {
     describe('and the data is valid', () => {
       it('responds with created pantry product', async () => {
         const product = new Product({
-          barCode: '1234-abcd-pantry',
+          barCode: '1234-abcd-pantry-test',
           name: 'Test Product Add Pantry',
         });
         const savedProduct = await product.save();
