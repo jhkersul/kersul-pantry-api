@@ -64,7 +64,7 @@ export async function deletePantryProduct(req, res) {
     await DeletePantryProduct.handle(id);
 
     res.status(204);
-    res.json();
+    res.send();
   } catch (error) {
     respondError(res, error);
   }
