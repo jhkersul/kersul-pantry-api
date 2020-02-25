@@ -22,7 +22,7 @@ describe('Infra: Cosmos Client', () => {
       const invalidGtin = 'abcd1234';
       mockFailedGetProductByGtin(invalidGtin);
 
-      expect(CosmosClient.getProductByGtin(invalidGtin))
+      await expect(CosmosClient.getProductByGtin(invalidGtin))
         .rejects.toThrow('Product not found');
     });
   });

@@ -1,5 +1,6 @@
 import Joi from '@hapi/joi';
 import ValidationError from '../../exceptions/ValidationError';
+import { transformJoiToErrorDetails } from './JoiTransform';
 
 const pantryProductSchema = Joi.object({
   productId: Joi.string().required(),
@@ -8,13 +9,6 @@ const pantryProductSchema = Joi.object({
   expiryMonth: Joi.number().min(1).max(12),
   expiryYear: Joi.number().min(2020),
 });
-
-function transformJoiToErrorDetails(error) {
-  return error.details.map((errorDetail) => ({
-    target: errorDetail.path.join('.'),
-    message: errorDetail.message,
-  }));
-}
 
 /**
  * Validates the request body for create pantry product payload

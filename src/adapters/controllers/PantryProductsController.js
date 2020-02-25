@@ -2,6 +2,8 @@ import { validateCreatePantryProduct } from '../validations/CreatePantryProductV
 import { respondError } from '../ErrorResponse';
 import CreatePantryProduct from '../../use_cases/CreatePantryProduct';
 import FindPantryProductSameExpiry from '../../use_cases/FindPantryProductSameExpiry';
+import DeletePantryProduct from '../../use_cases/DeletePantryProduct';
+import { validatePathId } from '../validations/PathIdValidation';
 
 async function addQuantityToPantryProduct(pantryProduct, quantity) {
   const updatedPantryProduct = pantryProduct;
@@ -15,6 +17,11 @@ function respondPantryProduct(res, pantryProduct, httpStatus) {
   res.json({ ...pantryProduct.toObject() });
 }
 
+/**
+ * POST /pantry-products
+ * @param {Object} req Express req
+ * @param {Object} res Express res
+ */
 export async function createPantryProduct(req, res) {
   const { body } = req;
 
@@ -39,6 +46,25 @@ export async function createPantryProduct(req, res) {
 
     const createdPantryProduct = await CreatePantryProduct.handle(validatedBody);
     respondPantryProduct(res, createdPantryProduct, 201);
+  } catch (error) {
+    respondError(res, error);
+  }
+}
+
+/**
+ * DELETE /pantry-products/:id
+ * @param {Object} req Express req
+ * @param {Object} res Express res
+ */
+export async function deletePantryProduct(req, res) {
+  try {
+    validatePathId(req.params);
+
+    const { id } = req.params;
+    await DeletePantryProduct.handle(id);
+
+    res.status(204);
+    res.json();
   } catch (error) {
     respondError(res, error);
   }
