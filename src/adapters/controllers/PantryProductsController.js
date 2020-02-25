@@ -4,13 +4,8 @@ import CreatePantryProduct from '../../use_cases/CreatePantryProduct';
 import FindPantryProductSameExpiry from '../../use_cases/FindPantryProductSameExpiry';
 import DeletePantryProduct from '../../use_cases/DeletePantryProduct';
 import { validatePathId } from '../validations/PathIdValidation';
-
-async function addQuantityToPantryProduct(pantryProduct, quantity) {
-  const updatedPantryProduct = pantryProduct;
-  updatedPantryProduct.quantity += quantity;
-
-  return pantryProduct.save();
-}
+import UpdatePantryProduct from '../../use_cases/UpdatePantryProduct';
+import { validateUpdatePantryProduct } from '../validations/UpdatePantryProductValidation';
 
 function respondPantryProduct(res, pantryProduct, httpStatus) {
   res.status(httpStatus);
@@ -35,9 +30,9 @@ export async function createPantryProduct(req, res) {
     );
 
     if (foundPantryProduct) {
-      const updatedPantryProduct = await addQuantityToPantryProduct(
-        foundPantryProduct,
-        validatedBody.quantity,
+      const updatedPantryProduct = await UpdatePantryProduct.handle(
+        foundPantryProduct.id,
+        { quantity: validatedBody.quantity + foundPantryProduct.quantity },
       );
 
       respondPantryProduct(res, updatedPantryProduct, 200);
@@ -65,6 +60,26 @@ export async function deletePantryProduct(req, res) {
 
     res.status(204);
     res.send();
+  } catch (error) {
+    respondError(res, error);
+  }
+}
+
+/**
+ * PATCH /pantry-products/:id
+ * @param {Object} req Express req
+ * @param {Object} res Express res
+ */
+export async function updatePantryProduct(req, res) {
+  const { body } = req;
+  const { id } = req.params;
+
+  try {
+    validatePathId(req.params);
+    const validatedBody = validateUpdatePantryProduct(body);
+    const updatedPantryProduct = await UpdatePantryProduct.handle(id, validatedBody);
+
+    respondPantryProduct(res, updatedPantryProduct, 200);
   } catch (error) {
     respondError(res, error);
   }

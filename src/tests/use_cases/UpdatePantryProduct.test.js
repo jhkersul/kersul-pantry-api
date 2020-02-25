@@ -54,7 +54,7 @@ describe('Use Case: Update Pantry Product', () => {
   });
 
   describe('When updating with incorrect params', () => {
-    it('throws error', async () => {
+    it('throws ValidationError', async () => {
       const product = await MockProduct.createProduct();
       const pantryProduct = await MockPantryProduct.createPantryProduct(product.id);
       const updateParams = {
@@ -67,14 +67,14 @@ describe('Use Case: Update Pantry Product', () => {
   });
 
   describe('When updating a non existent pantry product id', () => {
-    it('throws error', async () => {
+    it('throws NotFoundError', async () => {
       const nonExistentPantryProduct = '5e522793d8565388c9a3480b';
       const updateParams = {
         quantity: 1,
       };
 
       await expect(UpdatePantryProduct.handle(nonExistentPantryProduct, updateParams))
-        .rejects.toThrow('Invalid Pantry Product ID');
+        .rejects.toThrow(`PantryProduct with ID ${nonExistentPantryProduct} does not exist`);
     });
   });
 });
