@@ -166,6 +166,7 @@ paths:
         - schema:
             type: integer
             minimum: 1
+            default: 10
           in: query
           name: limit
   '/pantry-products/{id}':
