@@ -1,9 +1,8 @@
 import BaseError from './BaseError';
 
 class ValidationError extends BaseError {
-  constructor(details = []) {
+  constructor(details = [], message = 'Validation error') {
     const statusCode = 422;
-    const message = 'Validation error';
     super(statusCode, message, details);
   }
 }
