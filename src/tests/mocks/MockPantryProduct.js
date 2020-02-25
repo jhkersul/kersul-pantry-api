@@ -1,4 +1,4 @@
-import PantryProduct from '../domain/PantryProduct';
+import PantryProduct from '../../domain/PantryProduct';
 
 async function createPantryProduct(
   productId,

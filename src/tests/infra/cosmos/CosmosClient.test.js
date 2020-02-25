@@ -1,8 +1,8 @@
-import CosmosClient from '../CosmosClient';
+import CosmosClient from '../../../infra/cosmos/CosmosClient';
 import {
   mockSuccessGetProductByGtin,
   mockFailedGetProductByGtin,
-} from '../../../mocks/cosmos/MockBluesoftCosmos';
+} from '../../mocks/cosmos/MockBluesoftCosmos';
 
 describe('Infra: Cosmos Client', () => {
   describe('When getting product with a valid GTIN', () => {

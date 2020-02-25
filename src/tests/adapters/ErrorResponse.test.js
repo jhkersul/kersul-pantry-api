@@ -1,4 +1,4 @@
-import { respondError } from '../ErrorResponse';
+import { respondError } from '../../adapters/ErrorResponse';
 import BaseError from '../../exceptions/BaseError';
 
 describe('Adapters: ErrorResponse', () => {

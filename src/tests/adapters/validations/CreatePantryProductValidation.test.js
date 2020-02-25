@@ -1,4 +1,4 @@
-import { validateCreatePantryProduct } from '../CreatePantryProductValidation';
+import { validateCreatePantryProduct } from '../../../adapters/validations/CreatePantryProductValidation';
 import ValidationError from '../../../exceptions/ValidationError';
 
 describe('Validation: Create Pantry Product Validation', () => {

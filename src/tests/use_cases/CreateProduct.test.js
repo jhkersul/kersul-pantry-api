@@ -1,6 +1,6 @@
-import CreateProduct from '../CreateProduct';
+import CreateProduct from '../../use_cases/CreateProduct';
 import Product from '../../domain/Product';
-import { connectToDatabase, disconnectFromDatabase } from '../../tests/TestDatabase';
+import { connectToDatabase, disconnectFromDatabase } from '../TestDatabase';
 
 describe('Use Case: Create Product', () => {
   let db;

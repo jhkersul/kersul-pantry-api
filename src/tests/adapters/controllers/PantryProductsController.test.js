@@ -1,8 +1,8 @@
 import request from 'supertest';
-import { connectToDatabase, disconnectFromDatabase } from '../../../tests/TestDatabase';
+import { connectToDatabase, disconnectFromDatabase } from '../../TestDatabase';
 import app from '../../../../app';
-import MockPantryProduct from '../../../mocks/MockPantryProduct';
-import MockProduct from '../../../mocks/MockProduct';
+import MockPantryProduct from '../../mocks/MockPantryProduct';
+import MockProduct from '../../mocks/MockProduct';
 
 describe('Controller: Pantry Products Controller', () => {
   let db;

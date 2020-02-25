@@ -1,5 +1,5 @@
-import { disconnectFromDatabase, connectToDatabase } from '../../tests/TestDatabase';
-import CreatePantryProduct from '../CreatePantryProduct';
+import { disconnectFromDatabase, connectToDatabase } from '../TestDatabase';
+import CreatePantryProduct from '../../use_cases/CreatePantryProduct';
 import Product from '../../domain/Product';
 
 describe('Use Case: Create Pantry Product', () => {

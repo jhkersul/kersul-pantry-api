@@ -1,7 +1,7 @@
-import { connectToDatabase, disconnectFromDatabase } from '../../tests/TestDatabase';
-import MockPantryProduct from '../../mocks/MockPantryProduct';
-import MockProduct from '../../mocks/MockProduct';
-import DeletePantryProduct from '../DeletePantryProduct';
+import { connectToDatabase, disconnectFromDatabase } from '../TestDatabase';
+import MockPantryProduct from '../mocks/MockPantryProduct';
+import MockProduct from '../mocks/MockProduct';
+import DeletePantryProduct from '../../use_cases/DeletePantryProduct';
 import PantryProduct from '../../domain/PantryProduct';
 import NotFoundError from '../../exceptions/NotFoundError';
 

@@ -1,4 +1,4 @@
-import { validatePathId } from '../PathIdValidation';
+import { validatePathId } from '../../../adapters/validations/PathIdValidation';
 import ValidationError from '../../../exceptions/ValidationError';
 
 describe('Validation: Path Id Validation', () => {

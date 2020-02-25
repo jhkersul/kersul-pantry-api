@@ -1,7 +1,7 @@
 import request from 'supertest';
 import app from '../../../../app';
-import { mockSuccessGetProductByGtin, mockFailedGetProductByGtin } from '../../../mocks/cosmos/MockBluesoftCosmos';
-import { disconnectFromDatabase, connectToDatabase } from '../../../tests/TestDatabase';
+import { mockSuccessGetProductByGtin, mockFailedGetProductByGtin } from '../../mocks/cosmos/MockBluesoftCosmos';
+import { disconnectFromDatabase, connectToDatabase } from '../../TestDatabase';
 
 describe('Controller: Products Controller', () => {
   let db;

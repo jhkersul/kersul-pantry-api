@@ -1,9 +1,9 @@
-import { connectToDatabase, disconnectFromDatabase } from '../../tests/TestDatabase';
+import { connectToDatabase, disconnectFromDatabase } from '../TestDatabase';
 import Product from '../../domain/Product';
-import GetProductByBarCode from '../GetProductByBarCode';
-import GetAndCreateExternalProductByBarCode from '../GetAndCreateExternalProductByBarCode';
+import GetProductByBarCode from '../../use_cases/GetProductByBarCode';
+import GetAndCreateExternalProductByBarCode from '../../use_cases/GetAndCreateExternalProductByBarCode';
 
-jest.mock('../GetAndCreateExternalProductByBarCode');
+jest.mock('../../use_cases/GetAndCreateExternalProductByBarCode');
 
 describe('Use Case: Get Product By Bar Code', () => {
   let db;

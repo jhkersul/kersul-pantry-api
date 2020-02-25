@@ -1,8 +1,8 @@
 import randomstring from 'randomstring';
-import FindPantryProductSameExpiry from '../FindPantryProductSameExpiry';
+import FindPantryProductSameExpiry from '../../use_cases/FindPantryProductSameExpiry';
 import PantryProduct from '../../domain/PantryProduct';
 import Product from '../../domain/Product';
-import { connectToDatabase, disconnectFromDatabase } from '../../tests/TestDatabase';
+import { connectToDatabase, disconnectFromDatabase } from '../TestDatabase';
 
 describe('Use Case: Find Pantry Product Same Expiry', () => {
   async function createProduct() {

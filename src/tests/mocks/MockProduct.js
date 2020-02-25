@@ -1,5 +1,5 @@
 import randomstring from 'randomstring';
-import Product from '../domain/Product';
+import Product from '../../domain/Product';
 
 async function createProduct(
   barCode = randomstring.generate(),

@@ -1,6 +1,6 @@
-import { connectToDatabase, disconnectFromDatabase } from '../../tests/TestDatabase';
-import { mockSuccessGetProductByGtin } from '../../mocks/cosmos/MockBluesoftCosmos';
-import GetAndCreateExternalProductByBarCode from '../GetAndCreateExternalProductByBarCode';
+import { connectToDatabase, disconnectFromDatabase } from '../TestDatabase';
+import { mockSuccessGetProductByGtin } from '../mocks/cosmos/MockBluesoftCosmos';
+import GetAndCreateExternalProductByBarCode from '../../use_cases/GetAndCreateExternalProductByBarCode';
 
 describe('Use Case: Get And Create External Product By Bar Code', () => {
   let db;

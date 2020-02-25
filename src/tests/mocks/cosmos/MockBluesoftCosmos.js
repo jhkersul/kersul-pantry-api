@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { COSMOS_BLUESOFT_URL, COSMOS_ACCESS_TOKEN } from '../../config';
+import { COSMOS_BLUESOFT_URL, COSMOS_ACCESS_TOKEN } from '../../../config';
 import getProductGtinResponse from './get-product-gtin-response.json';
 
 export function mockSuccessGetProductByGtin(gtin) {
