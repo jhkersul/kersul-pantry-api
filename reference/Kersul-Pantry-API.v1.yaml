@@ -146,7 +146,8 @@ paths:
               examples:
                 List of Pantry Products:
                   value:
-                    - productId: 5e522793d8565388c9a3480b
+                    - _id: 5e522793d8565388c9a3480a
+                      productId: 5e522793d8565388c9a3480b
                       quantity: 1
                       expiryDay: 1
                       expiryMonth: 1
