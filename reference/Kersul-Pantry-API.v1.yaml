@@ -131,6 +131,42 @@ paths:
         - pantry product
         - create
     parameters: []
+    get:
+      summary: ''
+      operationId: getPantryProducts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PantryProduct'
+              examples:
+                List of Pantry Products:
+                  value:
+                    - productId: 5e522793d8565388c9a3480b
+                      quantity: 1
+                      expiryDay: 1
+                      expiryMonth: 1
+                      expiryYear: 2021
+      description: Gets a list of pantry products
+      tags:
+        - pantry product
+        - list
+      parameters:
+        - schema:
+            type: integer
+            default: 0
+            minimum: 0
+          in: query
+          name: offset
+        - schema:
+            type: integer
+            minimum: 1
+          in: query
+          name: limit
   '/pantry-products/{id}':
     parameters:
       - schema:
@@ -309,3 +345,9 @@ tags:
     description: A update operation
   - name: delete
     description: A delete operation
+  - name: list
+    description: A list operation
+  - name: search
+    description: A search operation
+  - name: shopping list
+    description: A shopping list
