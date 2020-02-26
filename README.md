@@ -11,11 +11,11 @@ This is the backend for Kersul Pantry`s app. A pantry manager focused on Brazili
 - [X] API Docs
 - [X] Remove product on pantry 
 - [X] Update product on pantry 
+- [X] List Pantry Products
+- [ ] List Products
 - [ ] Add product to Shopping List
 - [ ] Remove product to Shopping List
 - [ ] Move product from Pantry to Shopping List
-- [ ] List Products
-- [ ] List Pantry Products
 - [ ] List Shopping List Products
 - [ ] Search registered products
 - [ ] User authentication
