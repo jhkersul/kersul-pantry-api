@@ -266,7 +266,9 @@ describe('Controller: Pantry Products Controller', () => {
         .expect('Content-Type', /json/)
         .expect(200);
 
-      expect(response.body).toHaveLength(1);
+      expect(response.body.length).toBeGreaterThan(0);
+      expect(response.body[0]._id).toBeTruthy();
+      expect(response.body[0].productId).toBeTruthy();
     });
   });
 });
