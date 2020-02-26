@@ -13,10 +13,6 @@ describe('Use Case: Get Pantry Products', () => {
     await disconnectFromDatabase(db);
   });
 
-  beforeEach(async () => {
-    await MockPantryProduct.deleteAll();
-  });
-
   describe('When passing a limit', () => {
     it('gets only the limit', async () => {
       await MockPantryProduct.createPantryProduct();
@@ -31,12 +27,13 @@ describe('Use Case: Get Pantry Products', () => {
   describe('When passing a offset', () => {
     it('gets exactly the offset pantry product', async () => {
       await MockPantryProduct.createPantryProduct();
-      const pantryProduct1 = await MockPantryProduct.createPantryProduct();
+      await MockPantryProduct.createPantryProduct();
 
-      const productsList = await GetPantryProducts.handle(1, 1);
+      const productsListWithoutOffset = await GetPantryProducts.handle(0, 2);
+      const productsListWithOffset = await GetPantryProducts.handle(1, 1);
 
-      expect(productsList).toHaveLength(1);
-      expect(productsList[0].id).toEqual(pantryProduct1.id);
+      expect(productsListWithOffset[0].id)
+        .toEqual(productsListWithoutOffset[1].id);
     });
   });
 });
