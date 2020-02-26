@@ -6,6 +6,11 @@ const getPantryProductsSchema = Joi.object({
   limit: Joi.number().min(1).default(1),
 });
 
-export function validateGetPantryProducts(reqParams) {
-  return validateJoiSchema(reqParams, getPantryProductsSchema);
+/**
+ * Validates GET Pantry Products query
+ * @param {Object} reqQUery The params that will be validated
+ * @returns {Object} The validated object result
+ */
+export function validateGetPantryProducts(reqQuery) {
+  return validateJoiSchema(reqQuery, getPantryProductsSchema);
 }
