@@ -3,9 +3,14 @@ import {
   createPantryProduct,
   deletePantryProduct,
   updatePantryProduct,
+  getPantryProducts,
 } from '../adapters/controllers/PantryProductsController';
 
 const router = express.Router();
+
+router.get('/', async (req, res) => {
+  getPantryProducts(req, res);
+});
 
 router.post('/', async (req, res) => {
   createPantryProduct(req, res);

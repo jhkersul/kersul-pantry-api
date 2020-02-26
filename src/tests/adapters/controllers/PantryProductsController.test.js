@@ -255,4 +255,18 @@ describe('Controller: Pantry Products Controller', () => {
       });
     });
   });
+
+  describe('When getting list of products', () => {
+    it('returns an array with the list of products', async () => {
+      await MockPantryProduct.createPantryProduct();
+
+      const response = await request(app)
+        .get('/pantry-products')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(response.body).toHaveLength(1);
+    });
+  });
 });

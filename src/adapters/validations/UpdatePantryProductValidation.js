@@ -1,6 +1,5 @@
 import Joi from '@hapi/joi';
-import ValidationError from '../../exceptions/ValidationError';
-import { transformJoiToErrorDetails } from './JoiTransform';
+import { validateJoiSchema } from './Validation';
 
 const pantryProductSchema = Joi.object({
   quantity: Joi.number().min(1),
@@ -15,11 +14,5 @@ const pantryProductSchema = Joi.object({
  * @returns {Object} Validation object
  */
 export function validateUpdatePantryProduct(requestBody) {
-  const validation = pantryProductSchema.validate(requestBody);
-  if (validation.error) {
-    const errorDetails = transformJoiToErrorDetails(validation.error);
-    throw new ValidationError(errorDetails);
-  }
-
-  return validation.value;
+  return validateJoiSchema(requestBody, pantryProductSchema);
 }

@@ -1,15 +1,22 @@
 import { validateCreatePantryProduct } from '../validations/CreatePantryProductValidation';
 import { respondError } from '../ErrorResponse';
 import CreatePantryProduct from '../../use_cases/CreatePantryProduct';
+import GetPantryProducts from '../../use_cases/GetPantryProducts';
 import FindPantryProductSameExpiry from '../../use_cases/FindPantryProductSameExpiry';
 import DeletePantryProduct from '../../use_cases/DeletePantryProduct';
 import { validatePathId } from '../validations/PathIdValidation';
 import UpdatePantryProduct from '../../use_cases/UpdatePantryProduct';
 import { validateUpdatePantryProduct } from '../validations/UpdatePantryProductValidation';
+import { validateGetPantryProducts } from '../validations/GetPantryProductsValidation';
 
 function respondPantryProduct(res, pantryProduct, httpStatus) {
   res.status(httpStatus);
   res.json({ ...pantryProduct.toObject() });
+}
+
+function respondPantryProductList(res, pantryProductsList, httpStatus) {
+  res.status(httpStatus);
+  res.json(pantryProductsList);
 }
 
 /**
@@ -71,15 +78,31 @@ export async function deletePantryProduct(req, res) {
  * @param {Object} res Express res
  */
 export async function updatePantryProduct(req, res) {
-  const { body } = req;
-  const { id } = req.params;
-
   try {
-    validatePathId(req.params);
-    const validatedBody = validateUpdatePantryProduct(body);
+    const validatedPathId = validatePathId(req.params);
+    const { id } = validatedPathId;
+    const validatedBody = validateUpdatePantryProduct(req.body);
     const updatedPantryProduct = await UpdatePantryProduct.handle(id, validatedBody);
 
     respondPantryProduct(res, updatedPantryProduct, 200);
+  } catch (error) {
+    respondError(res, error);
+  }
+}
+
+
+/**
+ * GET /pantry-products
+ * @param {Object} req Express req
+ * @param {Object} res Express res
+ */
+export async function getPantryProducts(req, res) {
+  try {
+    const validatedParams = validateGetPantryProducts(req.query);
+    const { limit, offset } = validatedParams;
+    const pantryProductsList = await GetPantryProducts.handle(offset, limit);
+
+    respondPantryProductList(res, pantryProductsList, 200);
   } catch (error) {
     respondError(res, error);
   }
