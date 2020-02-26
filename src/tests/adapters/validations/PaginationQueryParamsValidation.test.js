@@ -1,5 +1,5 @@
 import ValidationError from '../../../exceptions/ValidationError';
-import { validateGetPantryProducts } from '../../../adapters/validations/GetPantryProductsValidation';
+import { validatePaginationQueryParams } from '../../../adapters/validations/PaginationQueryParamsValidation';
 
 describe('Validation: Get Pantry Products Validation', () => {
   describe('When passing a invalid request body', () => {
@@ -8,7 +8,7 @@ describe('Validation: Get Pantry Products Validation', () => {
         offset: -10,
       };
 
-      expect(() => validateGetPantryProducts(invalidReqParams))
+      expect(() => validatePaginationQueryParams(invalidReqParams))
         .toThrow(ValidationError);
     });
   });
@@ -20,7 +20,7 @@ describe('Validation: Get Pantry Products Validation', () => {
         limit: 4,
       };
 
-      const validatedObject = validateGetPantryProducts(validReqParams);
+      const validatedObject = validatePaginationQueryParams(validReqParams);
 
       expect(validatedObject).toEqual(validReqParams);
     });

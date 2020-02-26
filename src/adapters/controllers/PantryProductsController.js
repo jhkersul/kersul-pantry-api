@@ -7,7 +7,7 @@ import DeletePantryProduct from '../../use_cases/DeletePantryProduct';
 import { validatePathId } from '../validations/PathIdValidation';
 import UpdatePantryProduct from '../../use_cases/UpdatePantryProduct';
 import { validateUpdatePantryProduct } from '../validations/UpdatePantryProductValidation';
-import { validateGetPantryProducts } from '../validations/GetPantryProductsValidation';
+import { validatePaginationQueryParams } from '../validations/PaginationQueryParamsValidation';
 
 function respondPantryProduct(res, pantryProduct, httpStatus) {
   res.status(httpStatus);
@@ -98,7 +98,7 @@ export async function updatePantryProduct(req, res) {
  */
 export async function getPantryProducts(req, res) {
   try {
-    const validatedParams = validateGetPantryProducts(req.query);
+    const validatedParams = validatePaginationQueryParams(req.query);
     const { limit, offset } = validatedParams;
     const pantryProductsList = await GetPantryProducts.handle(offset, limit);
 
