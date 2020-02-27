@@ -5,6 +5,7 @@ const shoppingListProduct = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Product',
     required: true,
+    unique: true,
   },
   quantity: {
     type: Schema.Types.Number,
