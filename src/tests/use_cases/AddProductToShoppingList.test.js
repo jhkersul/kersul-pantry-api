@@ -1,8 +1,8 @@
 import { disconnectFromDatabase, connectToDatabase } from '../TestDatabase';
-import CreateShoppingListProduct from '../../use_cases/CreateShoppingListProduct';
+import AddProductToShoppingList from '../../use_cases/AddProductToShoppingList';
 import MockProduct from '../mocks/MockProduct';
 
-describe('Use Case: Create Pantry Product', () => {
+describe('Use Case: Add Product To Shopping List', () => {
   let db;
 
   beforeAll(async () => {
@@ -21,7 +21,7 @@ describe('Use Case: Create Pantry Product', () => {
         quantity: 2,
       };
 
-      const shoppingListProduct = await CreateShoppingListProduct
+      const shoppingListProduct = await AddProductToShoppingList
         .handle(shoppingListProductParams);
 
       expect(shoppingListProduct.id).toBeTruthy();
