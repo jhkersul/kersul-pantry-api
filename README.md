@@ -1,7 +1,9 @@
 # Kersul Pantry - API
+
 [![CircleCI](https://circleci.com/gh/jhkersul/kersul-pantry-api.svg?style=svg)](https://circleci.com/gh/jhkersul/kersul-pantry-api)
 
-This is the backend for Kersul Pantry`s app. A pantry manager focused on Brazilian users. :)
+This is the backend for Kersul Pantry's app.
+A pantry manager focused on Brazilian users. :)
 
 ## :warning: **Development Status**
 
@@ -9,8 +11,8 @@ This is the backend for Kersul Pantry`s app. A pantry manager focused on Brazili
 - [X] Create product with bar code
 - [X] Add product to pantry
 - [X] API Docs
-- [X] Remove product on pantry 
-- [X] Update product on pantry 
+- [X] Remove product on pantry
+- [X] Update product on pantry
 - [X] List Pantry Products
 - [X] List Products
 - [ ] Add product to Shopping List
@@ -22,7 +24,7 @@ This is the backend for Kersul Pantry`s app. A pantry manager focused on Brazili
 
 ## API Docs
 
-https://stoplight.io/p/docs/gh/jhkersul/kersul-pantry-api
+[You can check API docs here](https://stoplight.io/p/docs/gh/jhkersul/kersul-pantry-api)
 
 ## Requirements
 
@@ -43,7 +45,7 @@ COSMOS_ACCESS_TOKEN=<your-access-token>
 Build docker image:
 
 ```bash
-$ docker-compose build
+docker-compose build
 ```
 
 ### Starting
@@ -51,7 +53,7 @@ $ docker-compose build
 Start service:
 
 ```bash
-$ docker-compose up
+docker-compose up
 ```
 
 Service will be available at [http://localhost:8080](http://localhost:8080)
@@ -61,11 +63,12 @@ Service will be available at [http://localhost:8080](http://localhost:8080)
 Run tests:
 
 ```bash
-$ docker-compose run web yarn test
+docker-compose run web yarn test
 ```
 
 Or run tests in `watch` mode:
 
 ```bash
-$ docker-compose run web yarn test --watch
+docker-compose run web yarn test --watch
 ```
+
