@@ -7,7 +7,7 @@ import BaseError from '../exceptions/BaseError';
  * Updates a Pantry Product
  * @param {ObjectId} pantryProductId ID of Pantry Product to update
  * @param {Object} patchParams Params that will be updated
- * @returns {PantryProduct} Updated pantry product
+ * @returns {Promise<PantryProduct>} Updated pantry product
  */
 async function handle(pantryProductId, patchParams) {
   try {
