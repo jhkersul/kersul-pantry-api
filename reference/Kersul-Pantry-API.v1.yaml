@@ -112,7 +112,7 @@ paths:
                     details:
                       - target: quantity
                         message: '"quantity" must be larger than or equal to 1'
-      description: Creates a Pantry Product or updates quantity if another equal already exist
+      description: Creates a Pantry Product or adds quantity if another equal already exist
       requestBody:
         content:
           application/json:
@@ -132,7 +132,7 @@ paths:
         - create
     parameters: []
     get:
-      summary: ''
+      summary: Get Pantry Products
       operationId: getPantryProducts
       responses:
         '200':
@@ -222,6 +222,142 @@ paths:
       description: Delete a Pantry Product
       tags:
         - pantry product
+        - delete
+  /shopping-list-products:
+    get:
+      summary: Get Shopping List Products
+      tags:
+        - shopping list
+        - list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShoppingListProduct'
+              examples:
+                List of Shopping List Products:
+                  value:
+                    - id: '123'
+                      productId: 5e522793d8565388c9a3480b
+                      quantity: 1
+      operationId: getShoppingListProducts
+      description: Gets a list of Shopping List Products
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: offset
+        - schema:
+            type: number
+          in: query
+          name: limit
+    post:
+      summary: Create Shopping List Product
+      operationId: createShoppingListProduct
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingListProduct'
+              examples:
+                Create Pantry Product Payload:
+                  value:
+                    _id: 5e522793d8565388c9a3480a
+                    productId: 5e522793d8565388c9a3480b
+                    quantity: 1
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Validation Error:
+                  value:
+                    error: 422
+                    message: Validation error
+                    details:
+                      - target: quantity
+                        message: '"quantity" must be larger than or equal to 1'
+      description: Creates a Shopping List Product or adds quantity if another equal already exist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShoppingListProduct'
+            examples:
+              Shopping List Product:
+                value:
+                  productId: 5e522793d8565388c9a3480b
+                  quantity: 1
+      tags:
+        - shopping list
+        - create
+  '/shopping-list-products/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    patch:
+      summary: Update Shopping List Product
+      operationId: updateShoppingListProduct
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PantryProduct'
+              examples:
+                Updated Shopping List Product:
+                  value:
+                    id: '123'
+                    productId: 5e522793d8565388c9a3480b
+                    quantity: 1
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Validation Error:
+                  value:
+                    error: 422
+                    message: Validation error
+                    details:
+                      - target: quantity
+                        message: '"quantity" must be larger than or equal to 1'
+      description: Partial updates a Shopping List Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShoppingListProduct'
+            examples:
+              Updating Shopping List Product Quantity:
+                value:
+                  quantity: 1
+      tags:
+        - shopping list
+        - update
+    delete:
+      summary: Delete Shopping List Product
+      operationId: deleteShoppingListProduct
+      responses:
+        '204':
+          description: No Content
+      description: Deletes a Shopping List Product by ID
+      tags:
+        - shopping list
         - delete
 components:
   schemas:
@@ -334,6 +470,16 @@ components:
           details:
             - target: quantity
               message: '"quantity" must be larger than or equal to 1'
+    ShoppingListProduct:
+      title: ShoppingListProduct
+      type: object
+      properties:
+        id:
+          type: string
+        productId:
+          type: string
+        quantity:
+          type: number
 tags:
   - name: product
     description: A product
