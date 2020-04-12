@@ -2,13 +2,18 @@ import express from 'express';
 import {
   createShoppingListProduct,
   getShoppingListProducts,
-  updateShoppingListProducts,
+  updateShoppingListProduct,
+  deleteShoppingListProduct,
 } from '../adapters/controllers/ShoppingListProductsController';
 
 const router = express.Router();
 
+router.delete('/:id', async (req, res) => {
+  deleteShoppingListProduct(req, res);
+});
+
 router.patch('/:id', async (req, res) => {
-  updateShoppingListProducts(req, res);
+  updateShoppingListProduct(req, res);
 });
 
 router.post('/', async (req, res) => {

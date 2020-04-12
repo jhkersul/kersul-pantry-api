@@ -6,6 +6,7 @@ import { validatePaginationQueryParams } from '../validations/PaginationQueryPar
 import { validatePathId } from '../validations/PathIdValidation';
 import GetShoppingListProducts from '../../use_cases/GetShoppingListProducts';
 import UpdateShoppingListProduct from '../../use_cases/UpdateShoppingListProduct';
+import DeleteShoppingListProduct from '../../use_cases/DeleteShoppingListProduct';
 
 function respondShoppingListProduct(res, shoppingListProduct, httpStatus) {
   res.status(httpStatus);
@@ -41,7 +42,7 @@ export async function createShoppingListProduct(req, res) {
  * @param {Object} req Express req
  * @param {Object} res Express res
  */
-export async function updateShoppingListProducts(req, res) {
+export async function updateShoppingListProduct(req, res) {
   try {
     const validatedPathId = validatePathId(req.params);
     const { id } = validatedPathId;
@@ -66,6 +67,25 @@ export async function getShoppingListProducts(req, res) {
     const shoppingListProductList = await GetShoppingListProducts.handle(offset, limit);
 
     respondShoppingListProductList(res, shoppingListProductList, 200);
+  } catch (error) {
+    respondError(res, error);
+  }
+}
+
+/**
+ * DELETE /shopping-list-products/:id
+ * @param {Object} req Express req
+ * @param {Object} res Express res
+ */
+export async function deleteShoppingListProduct(req, res) {
+  try {
+    validatePathId(req.params);
+
+    const { id } = req.params;
+    await DeleteShoppingListProduct.handle(id);
+
+    res.status(204);
+    res.send();
   } catch (error) {
     respondError(res, error);
   }

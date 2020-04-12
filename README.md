@@ -15,8 +15,8 @@ A pantry manager focused on Brazilian users. :)
 - [X] Update product on pantry
 - [X] List Pantry Products
 - [X] List Products
-- [ ] Add product to Shopping List
-- [ ] Remove product to Shopping List
+- [X] Add product to Shopping List
+- [X] Remove product to Shopping List
 - [ ] Move product from Pantry to Shopping List
 - [ ] List Shopping List Products
 - [ ] Search registered products
