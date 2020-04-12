@@ -7,10 +7,10 @@ function respondShoppingListProduct(res, shoppingListProduct, httpStatus) {
   res.json({ ...shoppingListProduct.toObject() });
 }
 
-// function respondShoppingListProductList(res, shoppingListProductList, httpStatus) {
-//   res.status(httpStatus);
-//   res.json(shoppingListProductList);
-// }
+function respondShoppingListProductList(res, shoppingListProductList, httpStatus) {
+  res.status(httpStatus);
+  res.json(shoppingListProductList);
+}
 
 /**
  * POST /pantry-products
