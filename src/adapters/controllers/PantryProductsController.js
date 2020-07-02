@@ -90,7 +90,6 @@ export async function updatePantryProduct(req, res) {
   }
 }
 
-
 /**
  * GET /pantry-products
  * @param {Object} req Express req
